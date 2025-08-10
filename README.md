@@ -99,8 +99,9 @@ Suppose the system has learned a prototype of triangle, composed of three indist
 
 
 ## How to cite?
+URL: https://link.springer.com/chapter/10.1007/978-3-032-00800-8_31
 
-bibtex:
+BIBTEX:
 ```bibtex
 @inproceedings{xu2024essence,
     author = {Xu, Bowen and Wang, Pei},
