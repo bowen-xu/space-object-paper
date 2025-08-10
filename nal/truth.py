@@ -55,7 +55,7 @@ class TruthValue:
         # calculate f, c
         self.f, self.c = w_to_f(w_p, w), w_to_c(w, self.k)
 
-    def revise(self, truth: 'TruthValue', ts_now, duration=20):
+    def revise(self, truth: 'TruthValue', ts_now=0, duration=20):
         # update ts
         if truth.c == 0: return
         self.projection(ts_now, duration)
