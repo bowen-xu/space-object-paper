@@ -27,6 +27,7 @@ class Layer:
                 truthv2 = lower_node.truth_value
                 # truthv3 = Truth_abduction(truthv1, truthv2)
                 truthv3 = Truth_comparison(truthv1, truthv2)
+                # truthv3 = Truth_induction(truthv1, truthv2)
                 higher_node.truth_value.revise(truthv3)
 
     def backprop(self):

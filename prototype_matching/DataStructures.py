@@ -1,13 +1,13 @@
 from nal.truth import TruthValue as Truth
 from nal.budget import BudgetValue as Budget
-from .Location import Location
+from .Position import Position
 import random
 
 class Mirror:
     truth: Truth
     anticipation: Truth
     budget: Budget
-    location: Location
+    position: Position
     novelty: float = 0.5
     matched_value: float = 0.0
     reward: float = 0.0
@@ -15,15 +15,15 @@ class Mirror:
         self.truth = Truth(0.0, 0.0)
         self.anticipation = Truth(0.0, 0.0)
         self.budget = Budget(0.1*random.random(), 0.0, 0.0)
-        self.location = location
+        self.position = location
     
 class Task:
     mirrors: list[Mirror]
-    gaze_point: Location
+    gaze_point: Position
     budget: Budget
     novelty: float = 0.5
     reward: float = 0.0
-    def __init__(self, mirrors: list[Mirror], gaze_point: Location) -> None:
+    def __init__(self, mirrors: list[Mirror], gaze_point: Position) -> None:
         self.truth = Truth(0.0, 0.0)
         self.budget = Budget(0.1*random.random(), 0.0, 0.0)
         self.mirrors = mirrors

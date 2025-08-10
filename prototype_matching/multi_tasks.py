@@ -1,7 +1,7 @@
 from nal.truth import TruthValue as Truth
 from nal.budget import BudgetValue as Budget
 
-from .Location import Location
+from .Position import Position
 from .DataStructures import Task, Mirror, Prototype
 import matplotlib.pyplot as plt
 import numpy as np
@@ -31,21 +31,21 @@ def create_prototype(locations: list[tuple[float, float]], scale=10, radius=0.3)
     """
     locations = [(loc[0]/scale, loc[1]/scale) for loc in locations]
     
-    curr_loc = Location(locations[0])
+    curr_loc = Position(locations[0])
     tasks = OrderedDict()
     for loc in locations:
-        dx, dy = curr_loc - Location(loc)
+        dx, dy = curr_loc - Position(loc)
         # loc_task = locations[0]
         for loc_task in locations:
-            task = Task([Mirror(Location(loc)) for loc in locations], Location((loc_task)))
+            task = Task([Mirror(Position(loc)) for loc in locations], Position((loc_task)))
             task.gaze_point.move(dx, dy) 
             x, y = task.gaze_point.center
             tasks[f"{x:.3f}, {y:.3f}"] = task
 
             task.budget.d = 1-Budget.get_decay_factor(DURATION_BUDGET)
             for mirror in task.mirrors:
-                mirror.location.radius = radius/scale
-                mirror.location.sharpness = mirror.location.radius*20*5
+                mirror.position.radius = radius/scale
+                mirror.position.sharpness = mirror.position.radius*20*5
                 mirror.budget.d = 1-Budget.get_decay_factor(DURATION_BUDGET)
     return Prototype(list(tasks.values()), scale), curr_loc
 
@@ -78,7 +78,7 @@ def update_task(task: Task, gazed_mirror: Mirror, feat_locs: list[tuple[float, f
         if gazed_mirror == mirror: # only if the mirror is gazed, the anticipated truth should be considered
             # 1. revise the truth of the mirror
             if len(feat_locs) > 0:
-                closeness = max([mirror.location.match(feat_loc) for feat_loc in feat_locs]) # closeness between the feature and the mirror
+                closeness = max([mirror.position.match(feat_loc) for feat_loc in feat_locs]) # closeness between the feature and the mirror
                 # truth_observed = Truth.from_w(closeness**2, closeness, 1)
                 truth_observed = Truth(closeness, min(closeness, 0.75), 1)
             else:

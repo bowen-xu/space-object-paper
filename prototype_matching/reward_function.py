@@ -5,10 +5,6 @@ def reward(mu, nu):
     nu = np.clip(np.sqrt(nu) * 1.75, 0.0, 1.0)
     return ((mu+1)*nu - 1) # *np.abs(mu)
 
-    # nu = np.clip(np.sqrt(nu) * 1.75, 0.0, 1.0)
-    # r = ((mu+1)*nu - 1)
-    # return np.sign(r) * np.abs(r)**0.5
-
 if __name__ == "__main__":
     print("mu=1, nu=1, reward=", reward(1, 1))
     print("mu=-1, nu=0, reward=", reward(-1, 0))
