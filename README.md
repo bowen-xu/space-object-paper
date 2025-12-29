@@ -103,7 +103,7 @@ URL: https://link.springer.com/chapter/10.1007/978-3-032-00800-8_31
 
 BIBTEX:
 ```bibtex
-@inproceedings{xu2024essence,
+@inproceedings{xu2025space,
     author = {Xu, Bowen and Wang, Pei},
     editor = {Ikl{\'e}, Matthew and Kolonin, Anton and Bennett, Michael},
     title = {On the Essence of Spatial Sense and Objects in Intelligence},
